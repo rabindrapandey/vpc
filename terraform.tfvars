@@ -1,0 +1,9 @@
+region = "us-east-1"
+environment = "dev"
+cidr_block = "10.0.0.0/16"
+vpc_tag = "tfvpc"
+igw_name = "tfvpc_igw"
+availability_zones = ["us-east-1a","us-east-1b"]
+bast_instance_type = "t2.micro"
+pub_dest_cidr = "0.0.0.0/0"
+aws_key_name = "nvirginiakp"
