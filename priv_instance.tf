@@ -39,7 +39,8 @@ resource "aws_security_group_rule" "allow_all_ssh_priv" {
   from_port         = 22
   to_port           = 22
   protocol          = "tcp"
-  cidr_blocks       = ["${aws_subnet.public.*.cidr_block}"] 
+  #cidr_blocks       = ["${aws_subnet.public.*.cidr_block}"] 
+  cidr_blocks       = ["${aws_subnet.private.*.id}"]
   security_group_id = "${aws_security_group.privInstSG.id}"
 }
 

@@ -23,3 +23,22 @@ resource "aws_subnet" "private" {
         Name    = "privSubnet-${element(var.availability_zones, count.index)}"
     }
 }
+
+###########################
+# Create NAT Gateway to allow Instances in Private subnet to access internet
+#
+
+resource "aws_eip" "nat" {
+    count   = 1
+    vpc     = true
+  
+}
+
+resource "aws_nat_gateway" "main" {
+  subnet_id         = "${element(aws_subnet.public.*.id, 1)}"
+  allocation_id     = "${element(aws_eip.nat.*.id, 1)}"
+
+  tags  =   {
+      Name  = "NAT - Terra"
+  }
+}
